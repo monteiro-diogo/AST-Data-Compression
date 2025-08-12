@@ -1,6 +1,4 @@
-## Lossy Compression Study
-
-**Objective:**  
+## Objective
 Evaluate various *lossy compression* methods on different types of data:
 
 1. **Numerical functions (1D)** — `.txt` files containing signal samples  
