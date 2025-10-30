@@ -22,3 +22,15 @@ Because of my previous results, C++ was now my go to language for compression an
     - In the 8 quilobits per second the amplitude of the compressed signal was lower than the original which means that we had some cuts in the frequency band. In the spectrogram we were able to see a significant cut in the frequencies and that became clear whit the Fourier Transform visualization, where there was low passage filter around the 4 quilohertz frequency.  
     - At 32 quilobits we saw basically the same but with a higher low passage filter.
     - And with 128 we observed way more from our compressed file and that reflects in a better sound quality compared to the other ones.
+
+ ___
+
+ ## Results
+### Original vs 128kbps compression
+<img width="1920" height="1046" alt="128kbps" src="https://github.com/user-attachments/assets/3b4dd364-b14c-466e-aa30-bfc69a12f426" />  
+
+### Original vs 32kbps compression
+<img width="1920" height="1046" alt="32kbps" src="https://github.com/user-attachments/assets/554b75e6-8a79-4595-8eb1-9dfde2ddf39e" />  
+
+### Original vs 8kbps compression
+<img width="1920" height="1046" alt="8kbps" src="https://github.com/user-attachments/assets/65f72c72-a1bc-4bd2-a45c-0dbf72b43e10" />
