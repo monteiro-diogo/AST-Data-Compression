@@ -1,26 +1,27 @@
 # Lossy Audio Compression
 
-This module focuses on the compression of continuous analog phenomena (represented as audio waveforms) using the **Opus codec**. It includes both the encoding mechanisms and the objective signal analysis tools.
+This module focuses on evaluating the **Opus codec** for audio data compression. It includes a C++ encoder and a MATLAB script for objective signal analysis.
 
 ## 📁 Directory Structure
 
-* `/AudioLossy/` & `AudioLossy.sln` - The C++ implementation utilizing the Opus codec to encode `.wav` reference files at various target bitrates (1 to 128 kbps).
-* `Lossy Audio.m` - MATLAB script used for objective analysis (Time-domain waveforms, Spectrograms, and FFT Magnitude Spectrums).
-* `audio_analysis.mlx` - MATLAB Live Script containing interactive signal analysis and visual results.
-
-## 🔬 Methodology
-
-1. **Encoding:** The C++ solution encodes reference `.wav` files into `.opus` format at predefined bitrates.
-2. **Subjective Testing:** Informal listening tests to establish perceptual degradation thresholds.
-3. **Objective Analysis:** Processing the compressed files through MATLAB to visualize high-frequency attenuation and spectral behavior.
+* `encode_opus.cpp` - C++ source code that reads a reference `.wav` file and encodes it into multiple `.opus` files at different bitrates (128, 64, 32, 8, and 1 kbps).
+* `audio_analysis.m` - MATLAB script that compares the original `.wav` file with the compressed `.opus` files, generating time-domain waveforms, spectrograms, and FFT magnitude spectrums.
+* `Beethoven_5th_Symphony.wav` - The reference audio file used for the encoding tests (expected in the root of this folder).
 
 ## 🛠️ Usage / How to Run
 
-### C++ Encoder
-1. Open `AudioLossy.sln` in Visual Studio.
-2. Build and run the project to generate the compressed `.opus` files in your designated output directory.
+### 1. C++ Encoder
+Ensure you have the `libopus` and `libsndfile` libraries installed in your development environment.
+Compile the source code linking the required libraries. For example, using GCC:
+```bash
+g++ encode_opus.cpp -o encode_opus -lopus -lsndfile
+```
+Run the executable. It will process Beethoven_5th_Symphony.wav and output the encoded files into the resultados folder:
+```bash
+./encode_opus
+```
 
-### MATLAB Analysis
-1. Open `Lossy Audio.m` or `audio_analysis.mlx` in MATLAB.
-2. Verify that the `file_wav` and `file_opus` paths correctly point to your generated audio files.
-3. Run the script to generate the comparative signal plots.
+### 2. MATLAB Analysis
+1. Open audio_analysis.m in MATLAB.
+2. Ensure that Beethoven_5th_Symphony.wav and the /resultados/ directory are in the same working path as the script.
+3. Run the script. It will generate a figure comparing the original WAV and the compressed OPUS file across three domains: time comparison, spectrograms, and frequency spectrum.

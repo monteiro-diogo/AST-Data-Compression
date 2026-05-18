@@ -1,21 +1,61 @@
-# Lossless Data Compression
+# Lossless Data Compression Benchmark
 
-This module contains the implementations and benchmarks for various lossless compression algorithms (Gzip, Brotli, Zstd, BZ2, LZMA, and LZ4). The goal is to maximize data reduction for structured and unstructured telemetry data without data loss.
+This module contains the automated benchmarking suite designed to evaluate and compare the performance of various lossless compression algorithms across different programming environments (**Python** and **C++**). 
 
-## 📁 Directory Structure
+The suite measures execution time, compression ratios, and system resource utilization (CPU and memory) using a diverse test corpus.
 
-* `/Python_implementation/` - Python scripts utilized for rapid prototyping and baseline benchmarking.
-* `/Lossless/` & `Lossless.sln` - The core C++ implementation and Visual Studio solution, optimized for speed and deterministic memory allocation.
-* `/Data/` & `/dataset/` - The structured folders containing the test corpus (Excel, PDF2TXT, Photos, Text).
+## 📁 Module Structure
 
-## 🛠️ Usage / How to Run
+* `lossless_metrics.py` - Python benchmarking script that evaluates algorithms, tracks metrics using tools like `psutil`, and exports results.
+* `lossless_metrics.cpp` - Optimized C++ benchmarking source code providing low-level execution data and high-precision timing.
+* `dataset/` - The test corpus directory containing structured and unstructured data organized by categories:
+  * `Excel/` - Tabular data sheets.
+  * `PDF2TXT/` - Plain text extracted from documentation.
+  * `Photos/` - Image assets.
+  * `Text/` - Log files and unstructured text documents.
 
-### C++ Implementation
-1. Open `Lossless.sln` in Visual Studio.
-2. Build the project in Release mode (x64) for accurate performance metrics.
-3. Run the executable. Ensure the dataset paths in the source code point correctly to the `/dataset` directory.
+## 📊 Supported Algorithms
 
-### Python Implementation
-1. Navigate to the `/Python_implementation/` directory.
-2. Install the required dependencies: `pip install -r requirements.txt` *(Note: Update if you don't use a requirements file)*.
-3. Execute the main benchmarking script: `python main.py` *(Note: Update with your actual script name)*.
+The benchmarking suite performs comprehensive level-sweeps across the following codecs:
+* **Gzip / DEFLATE**
+* **Brotli**
+* **Zstd (Zstandard)**
+* **BZ2 (bzip2)**
+* **LZMA**
+* **LZ4**
+
+## 🛠️ Environment Setup & Execution
+
+### 1. Python Implementation
+
+The Python script automates the sweep across algorithms and handles data typologies inside the `dataset/` directory.
+
+#### Dependencies
+Ensure you have the required codec bindings and system monitoring libraries installed:
+```bash
+pip install psutil zstandard brotli lz4
+```
+#### Running the Benchmark
+Execute the script from the terminal:
+
+```bash
+python lossless_metrics.py
+```
+The script will process the dataset and automatically generate a compiled metrics file named `results_python.csv.`
+
+### 2. C++ Implementation
+The C++ solution delivers maximum execution speed and deterministic memory tracking to establish a high-performance baseline.
+
+#### Compilation
+Compile the source code using your system's C++ compiler, ensuring all native development libraries for the target codecs (Zstd, Brotli, LZ4, Zlib) are correctly linked. For example, using GCC/Clang:
+
+```bash
+g++ lossless_metrics.cpp -o lossless_metrics -lz -lzstd -lbrotlienc -lbrotlidec -llz4
+```
+#### Running the Benchmark
+Execute the compiled binary:
+
+```bash
+./lossless_metrics
+```
+The execution will run the test matrix over the local dataset/ folder and output the structured data directly into results_cpp.csv.
