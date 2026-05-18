@@ -1,36 +1,26 @@
-# Lossy
-Similarly to what was done in lossless, I started by investigating what types of lossy algorithms exist and had 2 that caught my eye `Opus Codec` and `Mp3 Codec`, which probably most of us are familiar. There are also others, but I decided to proceed with the Opus Codec.  
+# Lossy Audio Compression
 
-I decided to continue my testing with a music to get a better understanding on how these types of algorithms work.
-___
+This module focuses on the compression of continuous analog phenomena (represented as audio waveforms) using the **Opus codec**. It includes both the encoding mechanisms and the objective signal analysis tools.
 
-## Description
-Because of my previous results, C++ was now my go to language for compression and so I created a script that would turn my original music from a .wav file to different .opus files, while testing different quilobits per second.  
-1. This change in quilobits per second would translate in the final result to the human ear, creating a perfect environment for subjective testing. With this, and comparing to the original music, I was able to hear that:
-    - at `128` quilobits per second, with a 91% compression rate, that it didn't have any perceptible changes, at least to me.  
-    - At `64` it almost sounds like the original, but not so good.  
-    - At `32` the sound quality had noticeably decreased.  
-    - At `8`, it was audible but not enjoyable anymore.  
-    - At `1` quilobits per second it basically was just noise.
-  
-2. After my subjective testing I proceeded with a technical analysis using MATLAB. Where I compared my original file vs mainly the opus ones being 8, 32 and 128 quilobits per second, in order to understand better how each of these behaves while compressing. For this objective analysis, I compared both original vs. compressed files by plotting:
-    - Signal Amplitude
-    - Spectrogram  
-    - Fourier Transform  
+## 📁 Directory Structure
 
-3. **RESULTS:** 
-    - In the 8 quilobits per second the amplitude of the compressed signal was lower than the original which means that we had some cuts in the frequency band. In the spectrogram we were able to see a significant cut in the frequencies and that became clear whit the Fourier Transform visualization, where there was low passage filter around the 4 quilohertz frequency.  
-    - At 32 quilobits we saw basically the same but with a higher low passage filter.
-    - And with 128 we observed way more from our compressed file and that reflects in a better sound quality compared to the other ones.
+* `/AudioLossy/` & `AudioLossy.sln` - The C++ implementation utilizing the Opus codec to encode `.wav` reference files at various target bitrates (1 to 128 kbps).
+* `Lossy Audio.m` - MATLAB script used for objective analysis (Time-domain waveforms, Spectrograms, and FFT Magnitude Spectrums).
+* `audio_analysis.mlx` - MATLAB Live Script containing interactive signal analysis and visual results.
 
- ___
+## 🔬 Methodology
 
- ## Results
-### Original vs 128kbps compression
-<img width="1920" height="1046" alt="128kbps" src="https://github.com/user-attachments/assets/3b4dd364-b14c-466e-aa30-bfc69a12f426" />  
+1. **Encoding:** The C++ solution encodes reference `.wav` files into `.opus` format at predefined bitrates.
+2. **Subjective Testing:** Informal listening tests to establish perceptual degradation thresholds.
+3. **Objective Analysis:** Processing the compressed files through MATLAB to visualize high-frequency attenuation and spectral behavior.
 
-### Original vs 32kbps compression
-<img width="1920" height="1046" alt="32kbps" src="https://github.com/user-attachments/assets/554b75e6-8a79-4595-8eb1-9dfde2ddf39e" />  
+## 🛠️ Usage / How to Run
 
-### Original vs 8kbps compression
-<img width="1920" height="1046" alt="8kbps" src="https://github.com/user-attachments/assets/65f72c72-a1bc-4bd2-a45c-0dbf72b43e10" />
+### C++ Encoder
+1. Open `AudioLossy.sln` in Visual Studio.
+2. Build and run the project to generate the compressed `.opus` files in your designated output directory.
+
+### MATLAB Analysis
+1. Open `Lossy Audio.m` or `audio_analysis.mlx` in MATLAB.
+2. Verify that the `file_wav` and `file_opus` paths correctly point to your generated audio files.
+3. Run the script to generate the comparative signal plots.

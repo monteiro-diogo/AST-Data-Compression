@@ -1,16 +1,25 @@
-## Lossless & Lossy
-&ensp; This repository explores data compression techniques, both lossless and lossy, with a focus on their application in telemetry systems.
-___
-### Description
-&ensp; Data comes in various shapes and sizes. Imagine this: It can range from something as small as a grocery list to massive databases, like AI data centers that train popular models such as GPT or Llama. Even a sound wave is simply data.  
+# AST Data Compression: Lossless & Lossy Evaluation
 
-&ensp; So, now let’s shift our focus to the goals of this work. The aim was to investigate lossy and lossless data compression algorithms, evaluate their performance in different scenarios, and identify which approaches are the most efficient for different sets of data. This is particularly important in areas like telemetry, where efficient data compression can reduce storage requirements, speed up data transmission, and cut operational costs. Ultimately, the goal is to optimize telemetry systems, making them faster and more efficient.  
-___
-### Analogy
-&ensp;  To make it easier to understand, I came up with this analogy. If we take the example of a letter, like the ones children send to Santa Claus on Christmas:
-- **[Lossless](https://github.com/t-ros/AST-Data-Compression/tree/main/Lossless),** is like writing a wishlist and then fold the letter to fit in a smaller envelope. If we do this, Santa will still be able to read everything that was written, he simply has to unfold it. Technically speaking, this has the same meaning as compressing and decompressing a file or folder to suit our needs without losing data.
+This repository contains the source code, datasets, and final report for my Summer Internship project at **Active Space Technologies**. 
 
-- **[Lossy](https://github.com/t-ros/AST-Data-Compression/tree/main/Lossy)**, is like making a wishlist with 5 toys but when we are about to send it, our parents say we can only wish for 1 toy. So, now we have to cut out toys that we don't really need and the one that's left is the one that's most important. So, technically, removing information like this will make it shorter but it will also make it impossible to recover what was erased, leaving us only with the most important information.
-___
-### License
-This project is licensed under [MIT License](https://github.com/t-ros/AST-Data-Compression/blob/main/LICENSE).
+The project focuses on evaluating and implementing both **lossless** and **lossy** data compression algorithms, targeting telemetry applications where reducing storage requirements and accelerating data transmission are critical.
+
+## 🚀 Project Overview
+
+The study evaluates the performance, compression ratios, and computational efficiency of various algorithms, comparing high-level (Python) and low-level (C++) implementations.
+
+* **Lossless Compression:** Evaluation of Gzip, Brotli, Zstd, BZ2, LZMA, and LZ4. 
+* **Lossy Compression:** Evaluation of the Opus codec for audio/analog signal data.
+* **Implementation Comparison:** Benchmarking execution time and memory behavior between C++ and Python.
+
+## 📁 Repository Structure
+
+* [`/Lossless`](./Lossless/) - Contains the Python and C++ source code for evaluating lossless algorithms.
+* [`/Lossy`](./Lossy/) - Contains the C++ Opus encoder implementation and MATLAB scripts for objective signal analysis.
+* [`AST_Final_Report.pdf`](./AST_Final_Report.pdf) - The comprehensive final internship report detailing methodology, results, and conclusions.
+
+## 📊 Key Findings
+
+1. **Optimal Lossless Codec:** Zstd (at low to moderate levels) provides the best practical trade-off between compression ratio, runtime, and resource consumption.
+2. **Optimal Lossy Codec:** Opus at 128 kbps delivers near-transparent perceptual quality for complex waveforms while yielding a ~91% file-size reduction.
+3. **C++ vs. Python:** C++ implementations reduced compression time by approximately 18.2% and exhibited highly stable, predictable memory behavior, making it the superior choice for resource-constrained telemetry systems.

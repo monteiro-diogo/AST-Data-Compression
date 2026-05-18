@@ -1,18 +1,21 @@
-# Lossless Testing
-## Description
-⚠️ The purpose of these scripts is to run benchmarking tests on each method's performance for comparison.
-___
+# Lossless Data Compression
 
-### Project Overview
-- Methods: `gzip`, `Brotli`, `Zstd`, `BZ2`, `LZMA`, and `LZ4`
-- Measures: `output size`, `reduction ratio`, `elapsed time`, `peak memory`, `average memory`, and `CPU usage` for **compression** and **decompression**.
-- Implementations: C++ (`lossless_metrics.cpp`) and Python (`lossless_metrics.py`).
+This module contains the implementations and benchmarks for various lossless compression algorithms (Gzip, Brotli, Zstd, BZ2, LZMA, and LZ4). The goal is to maximize data reduction for structured and unstructured telemetry data without data loss.
 
-All tests used the same dataset, comprising a mix of file types (documents, datasheets and images).
+## 📁 Directory Structure
 
-___
-### References
-You can also preview the results online [here](https://onedrive.live.com/personal/497d77d174738fd9/_layouts/15/Doc.aspx?sourcedoc=%7B342d219b-7c36-40e3-8513-c7bc8f8b4363%7D&action=default&nav=MTVfezI4RTQ0NEQ0LTkyMEQtNDBFRS1CMTc1LUEyOEMzQTA0MUNBRH0&redeem=aHR0cHM6Ly8xZHJ2Lm1zL3gvYy80OTdkNzdkMTc0NzM4ZmQ5L0Vac2hMVFEyZk9OQWhSUEh2SS1MUTJNQnNMMW9xYmlvdmJ1eFRTT3pxaWJ0UGc_ZT1NUGhJWGQmbmF2PU1UVmZlekk0UlRRME5FUTBMVGt5TUVRdE5EQkZSUzFDTVRjMUxVRXlPRU16UVRBME1VTkJSSDA&slrid=dd7ad4a1-105d-e000-7c09-9d5ef9e8534e&originalPath=aHR0cHM6Ly8xZHJ2Lm1zL3gvYy80OTdkNzdkMTc0NzM4ZmQ5L0Vac2hMVFEyZk9OQWhSUEh2SS1MUTJNQnNMMW9xYmlvdmJ1eFRTT3pxaWJ0UGc_cnRpbWU9Y3ZPTTlyOFgza2cmbmF2PU1UVmZlekk0UlRRME5FUTBMVGt5TUVRdE5EQkZSUzFDTVRjMUxVRXlPRU16UVRBME1VTkJSSDA&CID=c9453693-5e28-4f1b-abcf-b2a1ebaf3060&_SRM=0:G:91).
+* `/Python_implementation/` - Python scripts utilized for rapid prototyping and baseline benchmarking.
+* `/Lossless/` & `Lossless.sln` - The core C++ implementation and Visual Studio solution, optimized for speed and deterministic memory allocation.
+* `/Data/` & `/dataset/` - The structured folders containing the test corpus (Excel, PDF2TXT, Photos, Text).
 
+## 🛠️ Usage / How to Run
 
+### C++ Implementation
+1. Open `Lossless.sln` in Visual Studio.
+2. Build the project in Release mode (x64) for accurate performance metrics.
+3. Run the executable. Ensure the dataset paths in the source code point correctly to the `/dataset` directory.
 
+### Python Implementation
+1. Navigate to the `/Python_implementation/` directory.
+2. Install the required dependencies: `pip install -r requirements.txt` *(Note: Update if you don't use a requirements file)*.
+3. Execute the main benchmarking script: `python main.py` *(Note: Update with your actual script name)*.
